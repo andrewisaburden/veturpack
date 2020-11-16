@@ -1,13 +1,24 @@
 <template>
-  <div>
-    {{ fo }}
-  </div>
+  <child
+      :foo.sync="foo"
+  >
+  </child>
 </template>
 
-<script>
-import * as _ from 'lodash'
+<script lang="ts">
+import {
+    Component,
+    Vue,
+} from 'vue-property-decorator';
+import Child from './Child.vue';
 
-export default {
-  props: ['foo', 'bar']
+@Component({
+    components: {
+        Child,
+    },
+})
+export default class Parent extends Vue {
+  foo = 'hi';
 }
 </script>
+
